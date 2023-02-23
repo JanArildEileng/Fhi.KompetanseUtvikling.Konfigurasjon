@@ -13,16 +13,18 @@ namespace Testdata.Generator
     public class MyGenerator : IMyGenerator
     {
         private readonly IOptions<SykehusGeneratorConfig> sykehusGeneratorConfig;
+        private readonly SykehusGenerator sykehusGenerator;
 
-        public MyGenerator(IOptions<SykehusGeneratorConfig> sykehusGeneratorConfig)
+        public MyGenerator(IOptions<SykehusGeneratorConfig> sykehusGeneratorConfig, SykehusGenerator sykehusGenerator)
         {
             this.sykehusGeneratorConfig = sykehusGeneratorConfig;
+            this.sykehusGenerator = sykehusGenerator;
         }
 
 
         public SykehusGeneratedData GenerateSykehusData(int secretKey, string secretValue,int antallSykehus)
         {
-            SykehusGenerator sykehusGenerator = new SykehusGenerator(sykehusGeneratorConfig);
+            
 
             SykehusGeneratedData data = new SykehusGeneratedData(secretKey, secretValue);
 

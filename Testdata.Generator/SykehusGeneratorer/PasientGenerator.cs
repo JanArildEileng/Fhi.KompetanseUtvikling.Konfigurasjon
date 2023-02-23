@@ -1,21 +1,31 @@
-﻿using Sykehus.Domene;
+﻿using Microsoft.Extensions.Options;
+using Sykehus.Domene;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Testdata.Generator.Configuration;
 
 namespace Testdata.Generator.SykehusGeneratorer
 {
-    internal class PasientGenerator
+    public class PasientGenerator
     {
-        static string[] Pronmomens = { "han", "hun", "hen", "hin", "hyn" };
-        const int maxAlder = 120;
-        const int maxAntallSykdommer = 5;
+        string[] Pronmomens;
+        int maxAlder;
+        int maxAntallSykdommer;
         SykdomGenerator sykdomGenerator;
-        public PasientGenerator()
+
+        public IOptions<PasientGeneratorConfig> PasientGeneratorConfig { get; }
+
+        public PasientGenerator(IOptions<PasientGeneratorConfig> pasientGeneratorConfig, SykdomGenerator sykdomGenerator)
         {
-            sykdomGenerator = new SykdomGenerator();
+            this.sykdomGenerator = sykdomGenerator;
+            PasientGeneratorConfig = pasientGeneratorConfig;
+
+            Pronmomens = pasientGeneratorConfig.Value.Pronmomens;
+            maxAlder = pasientGeneratorConfig.Value.maxAlder;
+            maxAntallSykdommer= pasientGeneratorConfig.Value.maxAntallSykdommer;
         }
 
 

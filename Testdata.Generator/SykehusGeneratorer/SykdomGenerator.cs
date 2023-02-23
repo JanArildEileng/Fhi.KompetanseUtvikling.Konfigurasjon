@@ -1,17 +1,26 @@
-﻿using Sykehus.Domene;
+﻿using Microsoft.Extensions.Options;
+using Sykehus.Domene;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Testdata.Generator.Configuration;
 
 namespace Testdata.Generator.SykehusGeneratorer
 {
-    internal class SykdomGenerator
+    public class SykdomGenerator
     {
       
-        static string[] sykdomsnavn = { "Host", "Harke", "Snufse" };
-        static int maxAlvorligshetsgrad = 5;
+        string[] sykdomsnavn;
+        int maxAlvorligshetsgrad;
+
+        public SykdomGenerator(IOptions<SykdomGeneratorConfig> sykdomGeneratorConfig)
+        {
+            sykdomsnavn = sykdomGeneratorConfig.Value.Sykdomsnavn;
+            maxAlvorligshetsgrad=sykdomGeneratorConfig.Value.MaxAlvorligshetsgrad;
+        }
+
 
         internal Sykdom Generate()
         {

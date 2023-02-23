@@ -8,16 +8,16 @@ using Testdata.Generator.Configuration;
 
 namespace Testdata.Generator.SykehusGeneratorer
 {
-    internal class SykehusGenerator
+    public class SykehusGenerator
     {
         int antallPasienter;
         PasientGenerator pasientGenerator;
 
-        public SykehusGenerator(IOptions<SykehusGeneratorConfig> sykehusGeneratorConfig)
+        public SykehusGenerator(IOptions<SykehusGeneratorConfig> sykehusGeneratorConfig, PasientGenerator pasientGenerator)
         {
             antallPasienter = sykehusGeneratorConfig.Value.AntallPasienter;
 
-            pasientGenerator = new PasientGenerator();
+            this.pasientGenerator = pasientGenerator;
         }
 
 
