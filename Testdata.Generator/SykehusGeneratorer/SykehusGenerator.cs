@@ -1,18 +1,22 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Testdata.Generator.Configuration;
 
 namespace Testdata.Generator.SykehusGeneratorer
 {
     internal class SykehusGenerator
     {
-        int antallPasienter = 2;
+        int antallPasienter;
         PasientGenerator pasientGenerator;
 
-        public SykehusGenerator()
+        public SykehusGenerator(IOptions<SykehusGeneratorConfig> sykehusGeneratorConfig)
         {
+            antallPasienter = sykehusGeneratorConfig.Value.AntallPasienter;
+
             pasientGenerator = new PasientGenerator();
         }
 
