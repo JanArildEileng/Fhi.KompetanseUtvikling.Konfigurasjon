@@ -2,7 +2,10 @@
 using System.Text.Json;
 using Testdata.Generator;
 
-IConfigurationBuilder configurationBuilder = new ConfigurationBuilder().AddJsonFile("Config.json");
+IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
+    .AddJsonFile("Config.json")
+    .AddCommandLine(args);
+
 IConfigurationRoot configuration = configurationBuilder.Build();
 
 Console.WriteLine($"{configuration["Hello"]}");
