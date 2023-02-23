@@ -8,7 +8,7 @@ IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
 
 IConfigurationRoot configuration = configurationBuilder.Build();
 
-Console.WriteLine($"{configuration["Hello"]}");
+Console.WriteLine($"{configuration["Hello:Greeting"]} from {configuration["Hello:From"]}");
 
 const int antallSykehus = 2;
 IMyGenerator myGenerator = new MyGenerator();
@@ -17,3 +17,5 @@ SykehusGeneratedData sykehusGeneratedData = myGenerator.GenerateSykehusData(1010
 string jsonString = JsonSerializer.Serialize<SykehusGeneratedData> (sykehusGeneratedData,new JsonSerializerOptions() { WriteIndented=true});
 
 Console.WriteLine(jsonString);
+
+Console.WriteLine($"Goodbye from {configuration["Hello:From"]}");
