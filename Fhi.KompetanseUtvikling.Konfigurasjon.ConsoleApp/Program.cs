@@ -15,14 +15,18 @@ HelloConfiguration helloConfiguration = new HelloConfiguration()
 };
 
 configuration.GetSection("Hello").Bind(helloConfiguration);
-
-
-
 Console.WriteLine($"{helloConfiguration.Greeting} from {helloConfiguration.From}");
 
-const int antallSykehus = 2;
+SecretConfiguration secretConfiguration =configuration.GetSection("Secret").Get<SecretConfiguration>();
+
+AntallSykehusConfig antallSykehusConfig = new AntallSykehusConfig()
+{
+    AntallSykehus = 1
+};
+configuration.Bind(antallSykehusConfig);
+
 IMyGenerator myGenerator = new MyGenerator();
-SykehusGeneratedData sykehusGeneratedData = myGenerator.GenerateSykehusData(10101, "Secret", antallSykehus);
+SykehusGeneratedData sykehusGeneratedData = myGenerator.GenerateSykehusData(secretConfiguration.SecretKey, secretConfiguration.SecretValue, antallSykehusConfig.AntallSykehus);
 
 string jsonString = JsonSerializer.Serialize<SykehusGeneratedData> (sykehusGeneratedData,new JsonSerializerOptions() { WriteIndented=true});
 
