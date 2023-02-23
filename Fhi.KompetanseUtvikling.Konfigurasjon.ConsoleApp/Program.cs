@@ -9,11 +9,16 @@ IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
 
 IConfigurationRoot configuration = configurationBuilder.Build();
 
-HelloConfiguration configurationHello = configuration.GetSection("Hello").Get<HelloConfiguration>();
+HelloConfiguration helloConfiguration = new HelloConfiguration()
+{
+    Dato = DateTime.Now.ToString()
+};
+
+configuration.GetSection("Hello").Bind(helloConfiguration);
 
 
 
-Console.WriteLine($"{configurationHello.Greeting} from {configurationHello.From}");
+Console.WriteLine($"{helloConfiguration.Greeting} from {helloConfiguration.From}");
 
 const int antallSykehus = 2;
 IMyGenerator myGenerator = new MyGenerator();
@@ -24,3 +29,6 @@ string jsonString = JsonSerializer.Serialize<SykehusGeneratedData> (sykehusGener
 Console.WriteLine(jsonString);
 
 Console.WriteLine($"Goodbye from {configuration["Hello:From"]}");
+
+Console.WriteLine($"Dato: {helloConfiguration.Dato}");
+

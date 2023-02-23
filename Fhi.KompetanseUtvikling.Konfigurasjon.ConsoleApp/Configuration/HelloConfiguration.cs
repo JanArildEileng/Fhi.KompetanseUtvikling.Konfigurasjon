@@ -10,5 +10,8 @@ namespace Fhi.KompetanseUtvikling.Konfigurasjon.ConsoleApp.Configuration
     {
         public String Greeting { get; set; }
         public String From { get; set; }
+
+        public String Dato { get; set; }
+
     }
 }
