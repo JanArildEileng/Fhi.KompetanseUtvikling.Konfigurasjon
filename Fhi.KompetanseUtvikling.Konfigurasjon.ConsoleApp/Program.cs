@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Fhi.KompetanseUtvikling.Konfigurasjon.ConsoleApp.Configuration;
+using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 using Testdata.Generator;
 
@@ -8,8 +9,11 @@ IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
 
 IConfigurationRoot configuration = configurationBuilder.Build();
 
-IConfiguration configurationHello = configuration.GetSection("Hello");
-Console.WriteLine($"{configurationHello["Greeting"]} from {configurationHello["From"]}");
+HelloConfiguration configurationHello = configuration.GetSection("Hello").Get<HelloConfiguration>();
+
+
+
+Console.WriteLine($"{configurationHello.Greeting} from {configurationHello.From}");
 
 const int antallSykehus = 2;
 IMyGenerator myGenerator = new MyGenerator();
