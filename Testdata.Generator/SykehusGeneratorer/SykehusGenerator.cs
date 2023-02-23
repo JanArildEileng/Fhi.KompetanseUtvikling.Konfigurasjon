@@ -22,7 +22,7 @@ namespace Testdata.Generator.SykehusGeneratorer
             configuration.GetSection("SykehusGenerator").Bind(sykehusGeneratorConfig);
 
             antallPasienter =sykehusGeneratorConfig.AntallPasienter;
-            pasientGenerator = new PasientGenerator();
+            pasientGenerator = new PasientGenerator(configuration.GetSection("SykehusGenerator"));
         }
 
 

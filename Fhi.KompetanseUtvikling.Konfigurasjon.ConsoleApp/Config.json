@@ -12,9 +12,17 @@
 
   "TestDataGenerator": {
     "SykehusGenerator": {
-      "AntallPasienter" : 5
+      "AntallPasienter": 5,
+      "PasientGenerator": {
+        "MaxAlder": 120,
+        "MaxAntallSykdommer": 5,
+        "Pronmomens": [ "ditt","datt"]
+      }
+   
+
+    }
     }
 
-  }
+  
 
 }
