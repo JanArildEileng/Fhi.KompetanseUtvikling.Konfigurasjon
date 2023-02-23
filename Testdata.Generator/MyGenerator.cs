@@ -1,4 +1,5 @@
-﻿using Testdata.Generator.SykehusGeneratorer;
+﻿using Microsoft.Extensions.Configuration;
+using Testdata.Generator.SykehusGeneratorer;
 
 namespace Testdata.Generator
 {
@@ -9,9 +10,16 @@ namespace Testdata.Generator
 
     public class MyGenerator : IMyGenerator
     {
+        public IConfiguration Configuration { get; }
+  
+        public MyGenerator(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public SykehusGeneratedData GenerateSykehusData(int secretKey, string secretValue,int antallSykehus)
         {
-            SykehusGenerator sykehusGenerator = new SykehusGenerator();
+            SykehusGenerator sykehusGenerator = new SykehusGenerator(Configuration);
 
             SykehusGeneratedData data = new SykehusGeneratedData(secretKey, secretValue);
 

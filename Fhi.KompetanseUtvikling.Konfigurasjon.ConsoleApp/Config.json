@@ -8,6 +8,13 @@
     "SecretValue": "SecretKompetansebuilding"
   },
 
-  "antallSykehus": 2
+  "antallSykehus": 2,
+
+  "TestDataGenerator": {
+    "SykehusGenerator": {
+      "AntallPasienter" : 5
+    }
+
+  }
 
 }

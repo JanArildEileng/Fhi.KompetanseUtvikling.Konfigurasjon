@@ -25,7 +25,8 @@ AntallSykehusConfig antallSykehusConfig = new AntallSykehusConfig()
 };
 configuration.Bind(antallSykehusConfig);
 
-IMyGenerator myGenerator = new MyGenerator();
+IMyGenerator myGenerator = new MyGenerator(configuration.GetSection("TestDataGenerator"));
+
 SykehusGeneratedData sykehusGeneratedData = myGenerator.GenerateSykehusData(secretConfiguration.SecretKey, secretConfiguration.SecretValue, antallSykehusConfig.AntallSykehus);
 
 string jsonString = JsonSerializer.Serialize<SykehusGeneratedData> (sykehusGeneratedData,new JsonSerializerOptions() { WriteIndented=true});
