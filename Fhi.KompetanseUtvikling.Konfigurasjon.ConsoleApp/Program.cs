@@ -8,7 +8,8 @@ IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
 
 IConfigurationRoot configuration = configurationBuilder.Build();
 
-Console.WriteLine($"{configuration["Hello:Greeting"]} from {configuration["Hello:From"]}");
+IConfiguration configurationHello = configuration.GetSection("Hello");
+Console.WriteLine($"{configurationHello["Greeting"]} from {configurationHello["From"]}");
 
 const int antallSykehus = 2;
 IMyGenerator myGenerator = new MyGenerator();
