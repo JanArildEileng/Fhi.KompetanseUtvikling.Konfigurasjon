@@ -1,9 +1,4 @@
 ﻿using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Testdata.Generator.Configuration;
 
 namespace Testdata.Generator.SykehusGeneratorer
@@ -16,10 +11,8 @@ namespace Testdata.Generator.SykehusGeneratorer
         public SykehusGenerator(IOptions<SykehusGeneratorConfig> sykehusGeneratorConfig, PasientGenerator pasientGenerator)
         {
             antallPasienter = sykehusGeneratorConfig.Value.AntallPasienter;
-
             this.pasientGenerator = pasientGenerator;
         }
-
 
         internal Sykehus.Domene.Sykehus Generate()
         {
@@ -27,12 +20,10 @@ namespace Testdata.Generator.SykehusGeneratorer
 
             for (int i = 0; i < antallPasienter; i++)
             {
-                var pasient = pasientGenerator.Generate();
-                sykehus.Pasienter.Add(pasient);
+                sykehus.Pasienter.Add(pasientGenerator.Generate());
             }
 
             return sykehus;
-
         }
     }
 }

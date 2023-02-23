@@ -1,10 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
 using Sykehus.Domene;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Testdata.Generator.Configuration;
 
 namespace Testdata.Generator.SykehusGeneratorer
@@ -36,9 +31,7 @@ namespace Testdata.Generator.SykehusGeneratorer
             pasient.Pronomen = Pronmomens[RandomGenerator.GetRandom(Pronmomens.Length)];
             for (int i = 0; i < RandomGenerator.GetRandom(maxAntallSykdommer,1); i++)
             {
-                var sykdom = sykdomGenerator.Generate();
-                pasient.Sykdommer.Add(sykdom);
-
+                pasient.Sykdommer.Add(sykdomGenerator.Generate());
             }
 
             return pasient;
