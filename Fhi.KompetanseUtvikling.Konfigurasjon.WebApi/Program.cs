@@ -1,3 +1,4 @@
+using Fhi.KompetanseUtvikling.Konfigurasjon.WebApi.Configuration;
 using Testdata.Generator;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 Testdata.Generator.DependencyInjection.AddDependencyInjection.AddGenerator(builder.Services);
+
+builder.Services.Configure<SecretConfiguration>(builder.Configuration.GetSection("Secret"));
+builder.Services.Configure<AntallSykehusConfig>(builder.Configuration);
 
 
 var app = builder.Build();
